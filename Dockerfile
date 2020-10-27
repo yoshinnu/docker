@@ -1,13 +1,13 @@
-FROM node:12
+# FROM node:12
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY /myapp/package*.json /app/
+# COPY /myapp/package*.json /app/
 
-RUN npm install
+# RUN npm install
 
-COPY . .
+# COPY /myapp /app
 
-EXPOSE 3000
+# EXPOSE 3000
 
-CMD [ "node", "./bin/www"]
+# CMD [ "node", "./bin/www"]

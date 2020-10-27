@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include("./share/navbar.ejs")%>
+<main role="main" class="container">
+  <div class="border-bottom mt-5 mb-5">
+    <% if(locals.userdata) { %>
+    <div class="panel-body">UserName :  <%= userdata.name %></div>
+    <% }else if(locals.user) { %>
+    <div class="panel-body">UserName :  <%= user.username %></div>
+    <% } %>
+    <h1><%= title %></h1>
+  </div>
+</main><!-- /.container -->
+  <script language="javascript" type="text/javascript" src="/public/javascripts/auth.js"></script>
+  </body>
+</html>
