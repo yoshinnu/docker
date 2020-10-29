@@ -4,25 +4,25 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
-const jwt = require("jsonwebtoken");
-
+const RegisterRouter = require('./routes/register.js');
+const HomeRouter = require('./routes/home.js');
+const LoginRouter = require('./routes/login.js');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', "ejs");
-
+app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/public", express.static(__dirname + "/public"));
+app.use('/public', express.static(__dirname + '/public'));
 
 
 //新規登録
-app.use('/register', require("./routes/register.js"));
+app.use('/register', RegisterRouter);
 //ログイン
-app.use('/', require("./routes/login.js"));
+app.use('/', LoginRouter);
 //home
-app.use("/home", require("./routes/home.js"));
+app.use('/home', HomeRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -37,5 +37,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.send('error');
 });
-
 module.exports = app;
