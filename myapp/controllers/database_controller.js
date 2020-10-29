@@ -25,7 +25,7 @@ const emailcheck = function (body) {
 const selectuser = function (body) {
   return model.Users.findOne({
     where: {
-      email: body.email
+      id: body.id
     }
   });
 };
