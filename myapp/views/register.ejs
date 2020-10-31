@@ -6,36 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title><%= title %></title>
 </head>
+
 <body class="text-center">
   <form class="form-signin" method="POST" action="/register/signup">
     <div class="mx-auto" style="width: 400px;">
       <div class="border-box">
         <h1 class="h3 mb-5 mt-5 font-weight-normal">Sign Up</h1>
         <div>
-        <label for="name" class="sr-only">Name</label>
-        <input name="name" type="name" id="inputName" class="form-control" placeholder="Name"  autofocus>
-      </div>
-      <div>
-        <label for="email" class="sr-only">Email address</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address"  autofocus>
-      </div>
-      <div>
-        <label for="password" class="sr-only">Password</label>
-        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" >
-      </div>
-    <div>
-        <label for="repassword" class="sr-only">Password</label>
-        <input name="repassword" type="password" id="inputrePassword" class="form-control" placeholder="Conform" >
-      </div>
+          <label for="name" class="sr-only">Name</label>
+          <input name="name" type="name" id="inputName" class="form-control" placeholder="Name" autofocus>
+        </div>
+        <div>
+          <label for="email" class="sr-only">Email address</label>
+          <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password">
+        </div>
+        <div>
+          <label for="repassword" class="sr-only">Password</label>
+          <input name="repassword" type="password" id="inputrePassword" class="form-control" placeholder="Conform">
+        </div>
         <div class="box  mb-5 mt-5"> </div>
         <% if (locals.errors) { %>
-          <% if (errors && errors.length !== 0) { for(let i = 0 ; i < errors.length;i++) { %>
-          <div class="alert alert-danger" ><%= errors[i].msg %></div>
+        <% if (errors && errors.length !== 0) { for(let i = 0 ; i < errors.length;i++) { %>
+        <div class="alert alert-danger"><%= errors[i].msg %></div>
         <% }}} %>
+        <% if (locals.message) { %>
+        <div class="alert alert-danger"><%= message %></div>
+        <% } %>
         <button class="btn btn-lg btn-primary btn-block" type="submit">OK</button>
         <a class="link" href="/" class="stretched-link">sign in</a>
       </div>
     </div>
   </form>
 </body>
+
 </html>

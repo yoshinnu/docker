@@ -1,2 +1,4 @@
 /myapp/node_modules
 /docker/db/data
+/myapp/app.env
+/docker/db/mysqldb.env

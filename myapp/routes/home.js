@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const authtoken = require('../controllers/authtoken_controller.js');
-const db = require('../controllers/database_controller');
+const authtoken = require('../controllers/authController.js');
+const db = require('../controllers/databaseController');
 
 router.get('/', authtoken.verifyToken, async (req, res) => {
   const user = await db.selectuser(req.decoded);
