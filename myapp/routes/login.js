@@ -3,7 +3,7 @@ const router = express.Router();
 const loginControll = require('../controllers/loginController.js');
 // GET goto login page
 router.get('/', loginControll.getLoginpage);
-// GET logout 
+// GET logout
 router.get('/logout', loginControll.getLogout);
 // POST goto homepage
 router.post('/login', loginControll.loginUser);

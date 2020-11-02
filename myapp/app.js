@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
 const RegisterRouter = require('./routes/register.js');
-const HomeRouter = require('./routes/home.js');
+const PostRouter = require('./routes/post.js');
 const LoginRouter = require('./routes/login.js');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +22,7 @@ app.use('/register', RegisterRouter);
 //ログイン
 app.use('/', LoginRouter);
 //投稿
-app.use('/home', HomeRouter);
+app.use('/post', PostRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

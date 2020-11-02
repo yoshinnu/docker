@@ -19,15 +19,18 @@ async function createRegister(req, res, next) {
     res.status(422).render('../views/register.ejs', { errors, title: 'Register' });
     return;
   }
-  const usercount = await db.getUserCountByemail(req.body);
-  console.log(usercount);
+  const usercount = await db.getUserCountByemail(req.body).catch((error) => {
+    console.error(error);
+  });
   if (usercount > 0) {
     const message = '登録済みのメールアドレスです。';
     res.status(400).render("register", { title: 'Register', message: message });
   } else {
-    const user = await db.createUser(req.body);
+    const user = await db.createUser(req.body).catch((error) => {
+      console.error(error);
+    });
     auth.createToken(res, user);
-    res.status(200).render('home.ejs', { title: 'Home', user: user });
+    res.status(200).render('post.ejs', { title: 'Post', user: user });
   }
 }
 

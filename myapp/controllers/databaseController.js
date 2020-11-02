@@ -27,8 +27,13 @@ const getUserByemail = function (body) {
     }
   });
 };
+//select user by id
+const getUserByid = function (userid) {
+  return model.Users.findByPk(userid);
+}
 module.exports = {
   createUser,
   getUserByemail,
-  getUserCountByemail
+  getUserCountByemail,
+  getUserByid
 };
