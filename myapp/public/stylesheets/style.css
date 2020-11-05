@@ -1,8 +1,9 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+div.container {
+  margin-right: auto;
+  margin-left : auto;
+  border: solid;
+  border-color: lightsteelblue; 
+  width: 1000px;
+  margin : 30px ;
+  padding : 20px ;
+ }

@@ -16,9 +16,10 @@ function getLogout(req, res) {
  * →　投稿画面へ
  */
 async function loginUser(req, res) {
-  const user = await db.getUserByemail(req.body).catch((error) => {
-    console.error(error);
-  });
+  const user = await db.getUserByemail(req.body)
+    .catch((error) => {
+      console.error(error);
+    });
   if (user && user.email === req.body.email && bcrypt.compareSync(req.body.password, user.password)) {
     auth.createToken(res, user)
     return res.status(200).render('post.ejs', { title: 'Post', user: user });

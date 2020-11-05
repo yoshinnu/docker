@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title><%= title %></title>
+  <%- include("./share/stylesheets.ejs") %>
+</head>
+<main role="main" class="container"></main>
+
+<body>
+  <%- include("./share/navbar.ejs")%>
+  <div class="border-bottom mt-5 mb-5">
+    <div class="panel-body">UserName : <%= userdata.username %></div>
+    <h1><%= title %></h1>
+    <% for(let i=0; i < otherposts.length;i++) { %>
+    <div class="container">
+      <h3> <%= otherposts[i].title %></h3>
+      <div>
+        <p> <%= otherposts[i].text %></p>
+      </div>
+      <div>
+        <p> 投稿者 : <%= otherposts[i].auther %></p>
+      </div>
+    </div>
+    <% } %>
+    <% for(let i=0; i < myposts.length;i++) { %>
+    <div class="container">
+      <h3> <%= myposts[i].title %></h3>
+      <div>
+        <p> <%= myposts[i].text %></p>
+      </div>
+      <div>
+        <p> 投稿者 : <%= myposts[i].auther %></p>
+      </div>
+      <tr>
+        <td>
+          <form style=display:inline-block action="/edit" method="GET">
+            <input type="hidden" name="id" value=<%= myposts[i].id %>>
+            <input type="submit" value="更新">
+          </form>
+        </td>
+        <td>
+          <form style=display:inline-block action="/edit/delete" method="POST">
+            <input type="hidden" name="id" value=<%= myposts[i].id %>>
+            <input type="submit" value="削除">
+          </form>
+        </td>
+      </tr>
+    </div>
+    <% } %>
+  </div>
+  </main><!-- /.container -->
+  <script language="javascript" type="text/javascript" src="#"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@ const db = require('../controllers/databaseController.js');
 const { validationResult } = require('express-validator');
 const auth = require('./authController');
 // 新規登録pageへ
-function getRegisterpage(req, res, next) {
+function getRegisterpage(req, res) {
   res.status(200).render('register', { title: 'register' });
 }
 /**新規アカウント作成

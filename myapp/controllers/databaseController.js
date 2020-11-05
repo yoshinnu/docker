@@ -30,10 +30,47 @@ const getUserByemail = function (body) {
 //select user by id
 const getUserByid = function (userid) {
   return model.Users.findByPk(userid);
+};
+/**insert post 
+ * user_id titles text auther
+ */
+const createPostData = function (post, user) {
+  const userpost = {
+    user_id: user.id,
+    auther: user.username,
+    title: post.title,
+    text: post.text
+  }
+  return model.posts.create(userpost);
+};
+//select post all
+const getAllPosts = function () {
+  return model.posts.findAll();
+};
+//select post byid
+const getSelectPostByid = function (id) {
+  return model.posts.findByPk(id);
+};
+//update post one
+const putSelectPostByid = function (post) {
+  const updatepost = {
+    text: post.content,
+    title: post.title
+  }
+  return model.posts.update(updatepost, { where: { id: post.id } });
+}
+//delete post byid
+const deleteSelectPostByid = function (id) {
+  return model.posts.destroy({ where: { id: id } });
 }
 module.exports = {
   createUser,
   getUserByemail,
   getUserCountByemail,
-  getUserByid
+  getUserByid,
+  createPostData,
+  getAllPosts,
+  getSelectPostByid,
+  putSelectPostByid,
+  deleteSelectPostByid
 };
