@@ -5,7 +5,15 @@ module.exports =
       let mypostdata = [];
       posts.forEach(post => {
         if (post.user_id === myid) {
-          mypostdata.push(post);
+          let mypost = {
+            id: post.id,
+            title: post.title,
+            text: post.text,
+            user_id: post.user_id,
+            auther: post.auther,
+            myid: myid
+          }
+          mypostdata.push(mypost);
         }
       })
       return mypostdata;
@@ -15,7 +23,15 @@ module.exports =
       let otherpostdata = [];
       posts.forEach(post => {
         if (post.user_id !== myid) {
-          otherpostdata.push(post);
+          let otherpost = {
+            id: post.id,
+            title: post.title,
+            text: post.text,
+            user_id: post.user_id,
+            auther: post.auther,
+            myid: myid
+          }
+          otherpostdata.push(otherpost);
         }
       })
       return otherpostdata;

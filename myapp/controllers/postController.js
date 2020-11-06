@@ -10,34 +10,15 @@ const getPostpage = async (req, res) => {
   res.render('post.ejs', { title: 'Post', user: user });
 };
 
-/**index画面遷移
- * 1 userデータの取得
- * 2 記事を全て取得
- * 3 記事データを仕分け
- * 4 indexpageへ
- */
+//index画面遷移
 const getIndexpage = async (req, res) => {
-  //1
-  const user = await db.getUserByid(req.decoded.id).catch((error) => {
-    console.error(error);
-  });
-  //2
-  const postdata = await db.getAllPosts().catch(error => {
-    console.error(error);
-  });
-  //3
-  const myposts = format.formatmyPosts(postdata, user.id);
-  const otherposts = format.formatOtherPosts(postdata, user.id);
-  //4
-  res.status(200).render('index.ejs', { title: 'Index', myposts: myposts, otherposts: otherposts, userdata: user });
+  res.status(200).render('index.ejs', { title: 'Index' });
 };
 
 /**新規投稿
  * 1 userデータの取得　
  * 2　記事をdbに登録
- * 3　全ての記事を取得
- * 4　記事データを仕分け
- * 5  indexに遷移
+ * 3  indexに遷移
  */
 const createPost = async (req, res) => {
   let errors = validationResult(req);
@@ -60,15 +41,7 @@ const createPost = async (req, res) => {
   await db.createPostData(post, user).catch(error => {
     console.error(error);
   });
-  //3
-  const postdata = await db.getAllPosts().catch(error => {
-    console.error(error);
-  });
-  //4
-  const myposts = format.formatmyPosts(postdata, user.id);
-  const otherposts = format.formatOtherPosts(postdata, user.id);
-  //5
-  res.status(200).render('index.ejs', { title: 'Index', myposts: myposts, otherposts: otherposts, userdata: user });
+  res.status(200).render('index.ejs', { title: 'Index' });
 };
 module.exports = {
   getPostpage,

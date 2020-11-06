@@ -7,7 +7,8 @@ const app = express();
 const RegisterRouter = require('./routes/register.js');
 const PostRouter = require('./routes/post.js');
 const LoginRouter = require('./routes/login.js');
-const EditRouter = require('./routes/edit.js')
+const EditRouter = require('./routes/edit.js');
+const IndexRouter = require('./routes/index.js');
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -26,6 +27,8 @@ app.use('/', LoginRouter);
 app.use('/post', PostRouter);
 //編集
 app.use('/edit', EditRouter);
+//test
+app.use('/test', IndexRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 

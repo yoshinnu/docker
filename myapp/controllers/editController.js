@@ -27,12 +27,7 @@ const updateSelectPost = async function (req, res) {
   await db.putSelectPostByid(req.body).catch(error => {
     console.error(error);
   });
-  const postdata = await db.getAllPosts().catch(error => {
-    console.error(error);
-  });
-  const myposts = format.formatmyPosts(postdata, user.id);
-  const otherposts = format.formatOtherPosts(postdata, user.id);
-  res.status(200).render('index.ejs', { title: 'Index', myposts: myposts, otherposts: otherposts, userdata: user });
+  res.status(200).render('index.ejs', { title: 'Index' });
 };
 
 //delete post byid
@@ -43,12 +38,7 @@ const deleteSelectPost = async function (req, res) {
   await db.deleteSelectPostByid(req.body.id).catch(error => {
     console.error(error);
   });
-  const postdata = await db.getAllPosts().catch(error => {
-    console.error(error);
-  });
-  const myposts = format.formatmyPosts(postdata, user.id);
-  const otherposts = format.formatOtherPosts(postdata, user.id);
-  res.status(200).render('index.ejs', { title: 'Index', myposts: myposts, otherposts: otherposts, userdata: user });
+  res.status(200).render('index.ejs', { title: 'Index' });
 };
 module.exports = {
   getEditpage,
