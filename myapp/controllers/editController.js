@@ -1,14 +1,11 @@
 const db = require('./databaseController.js');
-const FormClass = require('./class/formclass.js');
-const format = new FormClass;
 const { validationResult } = require('express-validator');
 //edit画面へ
 const getEditpage = async (req, res) => {
-  const selectpost = await db.getSelectPostByid(req.query.id).catch(error => {
+  const selectPost = await db.getSelectPostByid(req.query.id).catch(error => {
     console.error(error);
   });
-  console.log(selectpost);
-  res.status(200).render('editpost.ejs', { title: 'PostEdit', post: selectpost });
+  res.status(200).render('editpost.ejs', { title: 'PostEdit', post: selectPost });
 };
 
 //editerpost update
@@ -20,10 +17,6 @@ const updateSelectPost = async function (req, res) {
     res.status(422).render('post.ejs', { errors, title: 'Post' });
     return;
   }
-  const user = await db.getUserByid(req.decoded.id).catch((error) => {
-    console.error(error);
-  });
-
   await db.putSelectPostByid(req.body).catch(error => {
     console.error(error);
   });
@@ -32,9 +25,6 @@ const updateSelectPost = async function (req, res) {
 
 //delete post byid
 const deleteSelectPost = async function (req, res) {
-  const user = await db.getUserByid(req.decoded.id).catch((error) => {
-    console.error(error);
-  });
   await db.deleteSelectPostByid(req.body.id).catch(error => {
     console.error(error);
   });

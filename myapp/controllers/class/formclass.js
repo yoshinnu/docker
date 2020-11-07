@@ -1,39 +1,37 @@
 module.exports =
   class postForm {
-    //mypostを抜き出す
-    formatmyPosts(posts, myid) {
-      let mypostdata = [];
+    //myPostを抜き出す
+    formatmyPosts(posts, userId) {
+      let myPostData = [];
       posts.forEach(post => {
-        if (post.user_id === myid) {
-          let mypost = {
+        if (post.user_id === userId) {
+          let myPost = {
             id: post.id,
             title: post.title,
             text: post.text,
-            user_id: post.user_id,
-            auther: post.auther,
-            myid: myid
+            userId: post.userId,
+            auther: post.auther
           }
-          mypostdata.push(mypost);
+          myPostData.push(myPost);
         }
       })
-      return mypostdata;
+      return myPostData;
     }
-    //mypost以外を抜き出す
-    formatOtherPosts(posts, myid) {
-      let otherpostdata = [];
+    //myPost以外を抜き出す
+    formatOtherPosts(posts, userId) {
+      let otherPostData = [];
       posts.forEach(post => {
-        if (post.user_id !== myid) {
-          let otherpost = {
+        if (post.user_id !== userId) {
+          let otherPost = {
             id: post.id,
             title: post.title,
             text: post.text,
-            user_id: post.user_id,
+            userId: post.userId,
             auther: post.auther,
-            myid: myid
           }
-          otherpostdata.push(otherpost);
+          otherPostData.push(otherPost);
         }
       })
-      return otherpostdata;
+      return otherPostData;
     }
   };

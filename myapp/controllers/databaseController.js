@@ -28,8 +28,8 @@ const getUserByemail = function (body) {
   });
 };
 //select user by id
-const getUserByid = function (userid) {
-  return model.Users.findByPk(userid);
+const getUserByid = function (userId) {
+  return model.Users.findByPk(userId);
 };
 /**insert post 
  * user_id titles text auther

@@ -2,31 +2,24 @@ const url = 'http://localhost:3000/test/post';
 const index = document.getElementById("index");
 const edit = '/edit';
 const truncate = '/edit/delete';
-console.log('start');
 window.addEventListener('load', function () {
-  console.log('event start')
   fetch(url)
     .then(res => res.json())
     .then(body => {
       let posts = body;
-      console.log(index);
-      console.log(posts);
       //otherpostsを個数分作成
-      posts[0].otherposts.forEach(post => {
+      posts[0].otherPosts.forEach(post => {
         //要素の定義
         let div = document.createElement('div');
         let container = document.createElement('div');
         let text = document.createElement('p');
         let auther = document.createElement('p');
-        let posttitle = document.createElement('h3');
-        let input = document.createElement('input');
-        let updateform = document.createElement('form');
-        let deleteform = document.createElement('form');
+        let postTitle = document.createElement('h3');
         //作成開始
         container.classList.add('container');
         index.appendChild(container);
-        posttitle.textContent = post.title;
-        container.appendChild(posttitle);
+        postTitle.textContent = post.title;
+        container.appendChild(postTitle);
         container.appendChild(div);
         text.textContent = post.text;
         div.appendChild(text);
@@ -34,53 +27,53 @@ window.addEventListener('load', function () {
         auther.textContent = '投稿者: ' + post.auther;
         div.appendChild(auther);
       });
-      //myposts
-      posts[0].myposts.forEach(post => {
+      //myPosts
+      posts[0].myPosts.forEach(post => {
         //要素の定義
         let div = document.createElement('div');
         let container = document.createElement('div');
         let text = document.createElement('p');
         let auther = document.createElement('p');
-        let posttitle = document.createElement('h3');
-        let hiddenupdate = document.createElement('input');
-        let hiddendelete = document.createElement('input');
-        let updateinput = document.createElement('input');
-        let deleteinput = document.createElement('input');
-        let updateform = document.createElement('form');
-        let deleteform = document.createElement('form');
+        let postTitle = document.createElement('h3');
+        let hiddenUpdate = document.createElement('input');
+        let hiddenDelete = document.createElement('input');
+        let updateInput = document.createElement('input');
+        let deleteInput = document.createElement('input');
+        let updateForm = document.createElement('form');
+        let deleteForm = document.createElement('form');
         //作成開始
+        console.log(deleteForm);
         container.classList.add('container');
         index.appendChild(container);
-        posttitle.textContent = post.title;
-        container.appendChild(posttitle);
+        postTitle.textContent = post.title;
+        container.appendChild(postTitle);
         container.appendChild(div);
         text.textContent = post.text;
         div.appendChild(text);
         auther.textContent = '投稿者: ' + post.auther;
         div.appendChild(auther);
-        updateform.action = edit;
-        updateform.method = 'GET';
-        updateform.style.display = 'inline-block';
-        container.appendChild(updateform);
-        hiddenupdate.type = 'hidden';
-        hiddenupdate.name = 'id';
-        hiddenupdate.value = post.id;
-        updateinput.type = 'submit';
-        updateinput.value = '更新';
-        updateform.appendChild(hiddenupdate);
-        updateform.appendChild(updateinput);
-        deleteform.action = truncate;
-        deleteform.method = 'POST';
-        deleteform.style.display = 'inline-block';
-        container.appendChild(deleteform);
-        hiddendelete.type = 'hidden';
-        hiddendelete.name = 'id';
-        hiddendelete.value = post.id;
-        deleteinput.type = 'submit';
-        deleteinput.value = '削除';
-        deleteform.appendChild(hiddendelete);
-        deleteform.appendChild(deleteinput);
+        updateForm.action = edit;
+        updateForm.method = 'GET';
+        updateForm.style.display = 'inline-block';
+        container.appendChild(updateForm);
+        hiddenUpdate.type = 'hidden';
+        hiddenUpdate.name = 'id';
+        hiddenUpdate.value = post.id;
+        updateInput.type = 'submit';
+        updateInput.value = '更新';
+        updateForm.appendChild(hiddenUpdate);
+        updateForm.appendChild(updateInput);
+        deleteForm.action = truncate;
+        deleteForm.method = 'POST';
+        deleteForm.style.display = 'inline-block';
+        container.appendChild(deleteForm);
+        hiddenDelete.type = 'hidden';
+        hiddenDelete.name = 'id';
+        hiddenDelete.value = post.id;
+        deleteInput.type = 'submit';
+        deleteInput.value = '削除';
+        deleteForm.appendChild(hiddenDelete);
+        deleteForm.appendChild(deleteInput);
       });
-
     });
 });

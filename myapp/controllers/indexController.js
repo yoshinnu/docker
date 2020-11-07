@@ -8,15 +8,14 @@ const getAllPosts = async function (req, res) {
     console.error(error);
   });
   //2
-  const postdata = await db.getAllPosts().catch(error => {
+  const postData = await db.getAllPosts().catch(error => {
     console.error(error);
   });
   //3
-  const myposts = format.formatmyPosts(postdata, user.id);
-  const otherposts = format.formatOtherPosts(postdata, user.id);
+  const myPosts = format.formatmyPosts(postData, user.id);
+  const otherPosts = format.formatOtherPosts(postData, user.id);
   const posts = [];
-  posts.push({ myposts, otherposts });
-  console.log(posts[0].myposts[0].id);
+  posts.push({ myPosts, otherPosts });
   return res.json(posts);
 }
 

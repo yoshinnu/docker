@@ -1,6 +1,4 @@
 const db = require('../controllers/databaseController.js');
-const FormClass = require('./class/formclass.js');
-const format = new FormClass;
 const { validationResult } = require('express-validator');
 //postpageへ
 const getPostpage = async (req, res) => {

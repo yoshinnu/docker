@@ -1,6 +1,5 @@
 const createError = require('http-errors');
 const express = require('express');
-// const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
@@ -10,7 +9,6 @@ const LoginRouter = require('./routes/login.js');
 const EditRouter = require('./routes/edit.js');
 const IndexRouter = require('./routes/index.js');
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,10 +29,8 @@ app.use('/edit', EditRouter);
 app.use('/test', IndexRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-
   res.locals.error = {}
   res.render('error');
-
 });
 
 // error handler
@@ -45,6 +41,5 @@ app.use(function (err, req, res, next) {
   console.error(err);
   // render the error page
   res.status(err.status || 500);
-
 });
 module.exports = app;

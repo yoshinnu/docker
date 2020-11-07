@@ -19,10 +19,10 @@ async function createRegister(req, res, next) {
     res.status(422).render('../views/register.ejs', { errors, title: 'Register' });
     return;
   }
-  const usercount = await db.getUserCountByemail(req.body).catch((error) => {
+  const userCount = await db.getUserCountByemail(req.body).catch((error) => {
     console.error(error);
   });
-  if (usercount > 0) {
+  if (userCount > 0) {
     const message = '登録済みのメールアドレスです。';
     res.status(400).render("register", { title: 'Register', message: message });
   } else {
