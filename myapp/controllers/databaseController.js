@@ -36,7 +36,7 @@ const getUserByid = function (userId) {
  */
 const createPostData = function (post, user) {
   const userpost = {
-    user_id: user.id,
+    userId: user.id,
     auther: user.username,
     title: post.title,
     text: post.text
