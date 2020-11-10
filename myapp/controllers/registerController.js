@@ -2,7 +2,7 @@ const db = require('../controllers/databaseController.js');
 const { validationResult } = require('express-validator');
 const auth = require('./authController');
 // 新規登録pageへ
-function getRegisterpage(req, res, next) {
+function getRegisterpage(req, res) {
   res.status(200).render('register', { title: 'register' });
 }
 /**新規アカウント作成
@@ -19,10 +19,10 @@ async function createRegister(req, res, next) {
     res.status(422).render('../views/register.ejs', { errors, title: 'Register' });
     return;
   }
-  const usercount = await db.getUserCountByemail(req.body).catch((error) => {
+  const userCount = await db.getUserCountByemail(req.body).catch((error) => {
     console.error(error);
   });
-  if (usercount > 0) {
+  if (userCount > 0) {
     const message = '登録済みのメールアドレスです。';
     res.status(400).render("register", { title: 'Register', message: message });
   } else {
