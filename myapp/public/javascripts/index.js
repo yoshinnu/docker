@@ -1,27 +1,31 @@
-const url = 'http://localhost:3000/test/post';
+const url = 'http://localhost:3000/index/post';
 const index = document.getElementById("index");
 const edit = '/edit';
 const truncate = '/edit/delete';
-
+const chekedHeart = '♥';
+const heart = '♡';
 //画面に表示させる記事作成
 window.addEventListener('load', function () {
   fetch(url)
     .then(res => res.json())
     .then(body => {
-      let posts = body;
-      posts.postData.forEach(post => {
+      const posts = body.postData;
+      const user = body.user;
+      posts.forEach(post => {
         //要素の定義
-        let div = document.createElement('div');
-        let container = document.createElement('div');
-        let text = document.createElement('p');
-        let auther = document.createElement('p');
-        let postTitle = document.createElement('h3');
-        let hiddenUpdate = document.createElement('input');
-        let hiddenDelete = document.createElement('input');
-        let updateInput = document.createElement('input');
-        let deleteInput = document.createElement('input');
-        let updateForm = document.createElement('form');
-        let deleteForm = document.createElement('form');
+        const div = document.createElement('div');
+        const container = document.createElement('div');
+        const text = document.createElement('p');
+        const auther = document.createElement('p');
+        const postTitle = document.createElement('h3');
+        const hiddenUpdate = document.createElement('input');
+        const hiddenDelete = document.createElement('input');
+        const updateInput = document.createElement('input');
+        const deleteInput = document.createElement('input');
+        const updateForm = document.createElement('form');
+        const deleteForm = document.createElement('form');
+        const like = document.createElement('a');
+        const likeCount = document.createElement('p');
         //作成開始
         container.classList.add('container');
         index.appendChild(container);
@@ -33,8 +37,23 @@ window.addEventListener('load', function () {
         container.appendChild(div);
         auther.textContent = '投稿者: ' + post.auther;
         div.appendChild(auther);
+        like.value = post.id;
+        like.href = '#';
+        like.style.textDecoration = 'none';
+        like.style.display = 'inline-block';
+        if (post.userLike === 'on') {
+          like.textContent = chekedHeart;
+          like.onclick = function () { likeCheckDelete(post, like, likeCount); };
+        } else {
+          like.textContent = heart;
+          like.onclick = function () { likeCheck(post, like, likeCount); };
+        }
+        div.appendChild(like);
+        likeCount.textContent = post.likeCount;
+        likeCount.style.display = 'inline-block';
+        div.appendChild(likeCount);
         //userの投稿の場合更新と削除ボタンを追加
-        if (post.user_id === posts.user.id) {
+        if (post.userId === user.id) {
           updateForm.action = edit;
           updateForm.method = 'GET';
           updateForm.style.display = 'inline-block';
@@ -61,3 +80,37 @@ window.addEventListener('load', function () {
       });
     });
 });
+function likeCheck(post, like, count) {
+  const postId = { postId: post.id };
+  const method = "POST";
+  const body = Object.keys(postId).map((key) => key + "=" + encodeURIComponent(postId[key])).join("&");
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  };
+  like.textContent = chekedHeart;
+  like.onclick = '';
+  count.textContent++;
+  fetch("/index/likecheck", { method, headers, body })
+    .then(res => {
+      like.onclick = function () { likeCheckDelete(post, like, count); };
+    })
+    .catch(console.error);
+}
+function likeCheckDelete(post, like, count) {
+  const postId = { postId: post.id };
+  const method = "POST";
+  const body = Object.keys(postId).map((key) => key + "=" + encodeURIComponent(postId[key])).join("&");
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+  };
+  like.textContent = heart;
+  like.onclick = '';
+  count.textContent--;
+  fetch("/index/deletelike", { method, headers, body })
+    .then(res => {
+      like.onclick = function () { likeCheck(post, like, count); };
+    })
+    .catch(console.error);
+}

@@ -26,7 +26,7 @@ app.use('/post', PostRouter);
 //編集
 app.use('/edit', EditRouter);
 //test
-app.use('/test', IndexRouter);
+app.use('/index', IndexRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   res.locals.error = {}

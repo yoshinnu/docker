@@ -63,6 +63,28 @@ const putSelectPostByid = function (post) {
 const deleteSelectPostByid = function (id) {
   return model.posts.destroy({ where: { id: id } });
 }
+//select all postslike
+const getAllPostsLike = function () {
+  return model.postlikes.findAll();
+}
+//create postlikes 
+const createPostLike = function (userId, postId) {
+  const like = {
+    user_id: userId,
+    post_id: postId
+  }
+  return model.postlikes.create(like);
+}
+//delete postlikes byid
+const deletePostLike = function (userId, postId) {
+  const like = {
+    user_id: userId,
+    post_id: postId
+  }
+  return model.postlikes.destroy({
+    where: like
+  });
+}
 module.exports = {
   createUser,
   getUserByemail,
@@ -72,5 +94,8 @@ module.exports = {
   getAllPosts,
   getSelectPostByid,
   putSelectPostByid,
-  deleteSelectPostByid
+  deleteSelectPostByid,
+  getAllPostsLike,
+  createPostLike,
+  deletePostLike
 };
