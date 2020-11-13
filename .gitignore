@@ -2,3 +2,7 @@
 /docker/db/data
 /myapp/app.env
 /docker/db/mysqldb.env
+/myapp/public/javascripts/jquery
+/myapp/public/javascripts/popper.js
+/myapp/public/stylesheets/bootstrap-4.5.3-dist
+/myapp/public/stylesheets/font-awesome
