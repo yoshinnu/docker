@@ -88,7 +88,7 @@ window.addEventListener('load', function () {
         }
         i++;
       });
-    });
+    }).catch(console.error);
 });
 function likeCheck() {
   const num = this.value;
@@ -108,8 +108,7 @@ function likeCheck() {
   fetch("/index/likecheck", { method, headers, body })
     .then(res => {
       this.addEventListener('click', likeCheckDelete);
-    })
-    .catch(console.error);
+    }).catch(console.error);
 }
 function likeCheckDelete() {
   const num = this.value;

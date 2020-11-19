@@ -12,19 +12,19 @@ const getAllPosts = async function (req, res) {
     console.error(error);
   });
   const postData = format.formatPostsData(likes, posts, user);
-  return res.json({ postData, user });
+  return res.status(200).json({ postData, user });
 }
 const createPostLike = async function (req, res) {
   db.createPostLike(req.decoded.id, req.body.postId).catch(error => {
     console.error(error);
   });
-  return res.send(200, 'OK');
+  return res.status(200).send('OK');
 }
 const deletePostLike = async function (req, res) {
   db.deletePostLike(req.decoded.id, req.body.postId).catch(error => {
     console.error(error);
   });
-  return res.send(200, 'OK');
+  return res.status(200).send('OK');
 }
 module.exports = {
   getAllPosts,
